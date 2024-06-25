@@ -5,7 +5,7 @@ import java.util.Date;
 
 public abstract class Account {
     private int ID;
-    private String accountName;
+    private String name;
     private String fullName;
     private Date birthday;
     private String phone;
@@ -17,26 +17,29 @@ public abstract class Account {
     public Account() {
     }
 
-    public Account(String Email, String Password) {
-        this.email = Email;
-        this.password = Password;
+    public Account(String email, String name, String password, String fullName, Date birthday) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.fullName = fullName;
+        this.birthday = birthday;
     }
 
-    public Account(String accountName, String fullName, Date Birthday, String Phone, String Email, String Password, String address) {
+    public Account(String email, String name, String password, String fullName, Date birthday, String Phone, String address) {
         this.ID = count++;
-        this.accountName = accountName;
+        this.name = name;
         this.fullName = fullName;
-        this.birthday = Birthday;
+        this.birthday = birthday;
         this.phone = Phone;
-        this.email = Email;
-        this.password = Password;
+        this.email = email;
+        this.password = password;
         this.address = address;
     }
 
     @Override
     public String toString() {
         return "--------------------------------------------------->" + "\n" +
-               ID + ". [" + accountName + "]\n" +
+               ID + ". Account [" + name + "]\n" +
                "Email: " + email + "\n" +
                "Full name: " + fullName + "\n" +
                "Birthday: " + getBirthday() + "\n" +
@@ -44,12 +47,12 @@ public abstract class Account {
                "--------------------------------------------------->";
     }
 
-    public String getAccountName() {
-        return accountName;
+    public String getName() {
+        return name;
     }
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getFullName() {

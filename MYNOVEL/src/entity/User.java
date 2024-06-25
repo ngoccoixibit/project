@@ -6,11 +6,11 @@ public class User extends Account {
     public User() {
     }
 
-    public User(String Email, String Password) {
-        super(Email, Password);
+    public User(String email, String name, String password, String fullName, Date birthday) {
+        super(email, name, password, fullName, birthday);
     }
 
-    public User(String accountName, String fullName, Date Birthday, String Phone, String Email, String Password, String address) {
-        super(accountName, fullName, Birthday, Phone, Email, Password, address);
+    public User(String email, String name, String password, String fullName, Date birthday, String Phone, String address) {
+        super(email, name, password, fullName, birthday, Phone, address);
     }
 }

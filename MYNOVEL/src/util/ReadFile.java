@@ -1,7 +1,9 @@
 package util;
 
+import builder.InvoiceConcreteBuilder;
 import builder.NovelConcreteBuilder;
 import entity.Admin;
+import entity.Invoice;
 import entity.Novel;
 import entity.User;
 
@@ -34,22 +36,22 @@ public class ReadFile {
         List<String> propertyOfUserList = readFile(path);
         List<User> userList = new ArrayList<>();
         try {
-            final int INDEX_OF_NAME = 0;
-            final int INDEX_OF_FULL_NAME = 1;
-            final int INDEX_OF_BIRTHDAY = 2;
-            final int INDEX_OF_PHONE = 3;
-            final int INDEX_OF_EMAIL = 4;
-            final int INDEX_OF_PASSWORD = 5;
+            final int INDEX_OF_EMAIL = 0;
+            final int INDEX_OF_NAME = 1;
+            final int INDEX_OF_PASSWORD = 2;
+            final int INDEX_OF_FULL_NAME = 3;
+            final int INDEX_OF_BIRTHDAY = 4;
+            final int INDEX_OF_PHONE = 5;
             final int INDEX_OF_ADDRESS = 6;
             for (String propertyOFUser : propertyOfUserList) {
                 String[] properties = propertyOFUser.split("; ");
                 userList.add(new User(
+                        properties[INDEX_OF_EMAIL],
                         properties[INDEX_OF_NAME],
+                        properties[INDEX_OF_PASSWORD],
                         properties[INDEX_OF_FULL_NAME],
                         new SimpleDateFormat("dd-MM-yyyy").parse(properties[INDEX_OF_BIRTHDAY]),
                         properties[INDEX_OF_PHONE],
-                        properties[INDEX_OF_EMAIL],
-                        properties[INDEX_OF_PASSWORD],
                         properties[INDEX_OF_ADDRESS]));
             }
         } catch (ParseException e) {
@@ -62,22 +64,22 @@ public class ReadFile {
         List<String> propertyOfAdminList = readFile(path);
         List<Admin> adminList = new ArrayList<>();
         try {
-            final int INDEX_OF_NAME = 0;
-            final int INDEX_OF_FULL_NAME = 1;
-            final int INDEX_OF_BIRTHDAY = 2;
-            final int INDEX_OF_PHONE = 3;
-            final int INDEX_OF_EMAIL = 4;
-            final int INDEX_OF_PASSWORD = 5;
+            final int INDEX_OF_EMAIL = 0;
+            final int INDEX_OF_NAME = 1;
+            final int INDEX_OF_PASSWORD = 2;
+            final int INDEX_OF_FULL_NAME = 3;
+            final int INDEX_OF_BIRTHDAY = 4;
+            final int INDEX_OF_PHONE = 5;
             final int INDEX_OF_ADDRESS = 6;
             for (String propertyOFAdmin : propertyOfAdminList) {
                 String[] properties = propertyOFAdmin.split("; ");
                 adminList.add(new Admin(
+                        properties[INDEX_OF_EMAIL],
                         properties[INDEX_OF_NAME],
+                        properties[INDEX_OF_PASSWORD],
                         properties[INDEX_OF_FULL_NAME],
                         new SimpleDateFormat("dd-MM-yyyy").parse(properties[INDEX_OF_BIRTHDAY]),
                         properties[INDEX_OF_PHONE],
-                        properties[INDEX_OF_EMAIL],
-                        properties[INDEX_OF_PASSWORD],
                         properties[INDEX_OF_ADDRESS]));
             }
         } catch (ParseException e) {
@@ -115,5 +117,28 @@ public class ReadFile {
             System.out.println(e.getMessage());
         }
         return novelList;
+    }
+
+    public static List<Invoice> readFileInvoice(String path) {
+        List<String> propertyOfInvoiceList = readFile(path);
+        List<Invoice> invoiceList = new ArrayList<>();
+        try {
+            final int INDEX_OF_ACCOUNT_NAME = 0;
+            final int INDEX_OF_NOVEL_NAME = 1;
+            final int INDEX_OF_NOVEL_PRICE = 2;
+            final int INDEX_OF_NOVEL_DATE = 3;
+            for (String propertyOfInvoice : propertyOfInvoiceList) {
+                String[] property = propertyOfInvoice.split("; ");
+                invoiceList.add(new InvoiceConcreteBuilder()
+                        .setAccountName(property[INDEX_OF_ACCOUNT_NAME])
+                        .setNovelName(property[INDEX_OF_NOVEL_NAME])
+                        .setPrice(Integer.parseInt(property[INDEX_OF_NOVEL_PRICE]))
+                        .setDateOfPurchase(property[INDEX_OF_NOVEL_DATE])
+                        .build());
+            }
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+        }
+        return invoiceList;
     }
 }

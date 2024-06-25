@@ -13,6 +13,7 @@ public class Novel {
     private String description;
     private int price;
     private int chapter;
+    private int numberOfNovelPurchase;
     private static int count = 1;
 
     public Novel() {}
@@ -35,15 +36,15 @@ public class Novel {
 
     @Override
     public String toString() {
-        return ("--------------------------------------------------->" + "\n" +
-                novelID + ". [" + novelName + "] (Public: " + isPublic() + ")\n" +
+        return ("------------------------------------------------------------------------------------->" + "\n" +
+                novelID + ". [" + novelName + "]\n" +
                 "Genre: " + type + "\n" +
                 "Date: " + getFormatDateOfPublication() + "\n" +
                 "Author: " + author + "\n" +
-                "Chapter number: " + chapter + "\n" +
-                "Price: " + price + "\n" +
+                "Chapter: " + chapter + "\n" +
+                "Price: " + price + " VND\n" +
                 "Description: " + description + "\n" +
-                "--------------------------------------------------->");
+                "------------------------------------------------------------------------------------->");
     }
 
     public boolean isPublic() {
@@ -108,5 +109,11 @@ public class Novel {
 
     public void setChapter(int chapter) {
         this.chapter = chapter;
+    }
+
+    public int getNumberOfNovelPurchase() { return numberOfNovelPurchase;}
+
+    public void setNumberOfNovelPurchase() {
+        this.numberOfNovelPurchase++;
     }
 }

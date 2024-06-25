@@ -3,7 +3,7 @@ package util;
 import java.util.Scanner;
 
 public class Input {
-    private static final Scanner INPUT = new Scanner(System.in);
+    public static final Scanner INPUT = new Scanner(System.in);
     public static int scanIntegerLine(String request) {
         int number;
         do {
@@ -12,7 +12,7 @@ public class Input {
                 number = Integer.parseInt(INPUT.nextLine());
                 break;
             } catch(NumberFormatException e) {
-                System.out.println("Error! " + e.getMessage() + ". Please input number! [>v<]");
+                System.out.println("Error! " + e.getMessage() + ". Please input number!");
             }
         } while(true);
         return number;
@@ -26,7 +26,7 @@ public class Input {
                 string = Boolean.parseBoolean(INPUT.nextLine());
                 break;
             } catch(NumberFormatException e) {
-                System.out.println("Error! " + e.getMessage() + ". Please input 'true' or 'false'! (>,<)");
+                System.out.println("Error! " + e.getMessage() + ". Please input 'true' or 'false'!");
             }
         } while(true);
         return string;
@@ -42,7 +42,7 @@ public class Input {
         do {
             text = scanStringLine(request);
             if (Validation.validate(text, regexPattern)) {
-                System.out.println("Invalid Input! Wrong format! (>,<)");
+                System.out.println("Invalid Input! Wrong format!");
             }
         } while (Validation.validate(text, regexPattern));
         return text;

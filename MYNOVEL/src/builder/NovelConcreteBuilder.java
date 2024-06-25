@@ -73,7 +73,5 @@ public class NovelConcreteBuilder implements NovelBuilder {
 
 
     @Override
-    public Novel build() {
-        return new Novel(author, name, type, date, price, chapter, description, Public) {};
-    }
+    public Novel build() {return new Novel(author, name, type, date, price, chapter, description, Public) {};}
 }
